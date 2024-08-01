@@ -84,12 +84,3 @@ button.number {
 button.number:hover {
     background-color: #777;
 }
-
-button.double {
-    background-color: #f8f9fa;
-    color: #333;
-}
-
-button.double:hover {
-    background-color: #e9ecef;
-}
