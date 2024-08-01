@@ -34,4 +34,36 @@ function calculate() {
 
     switch (operator) {
         case '+':
-            result = prev + current
+            result = prev + current;
+            break;
+        case '-':
+            result = prev - current;
+            break;
+        case '*':
+            result = prev * current;
+            break;
+        case '/':
+            result = prev / current;
+            break;
+        default:
+            return;
+    }
+
+    currentInput = result.toString();
+    operator = '';
+    previousInput = '';
+    shouldResetDisplay = true;
+    updateDisplay(currentInput);
+}
+
+function updateDisplay(value) {
+    document.getElementById('display').textContent = value;
+}
+
+function clearDisplay() {
+    currentInput = '';
+    previousInput = '';
+    operator = '';
+    shouldResetDisplay = false;
+    updateDisplay('0');
+}
