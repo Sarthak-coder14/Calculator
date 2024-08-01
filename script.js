@@ -1,10 +1,16 @@
 let currentInput = '';
 let previousInput = '';
 let operator = '';
+let shouldResetDisplay = false;
 
 function appendNumber(number) {
     if (number === '.' && currentInput.includes('.')) return;
-    currentInput += number;
+    if (shouldResetDisplay) {
+        currentInput = number;
+        shouldResetDisplay = false;
+    } else {
+        currentInput += number;
+    }
     updateDisplay(currentInput);
 }
 
@@ -16,6 +22,7 @@ function setOperation(op) {
     operator = op;
     previousInput = currentInput;
     currentInput = '';
+    shouldResetDisplay = true;
 }
 
 function calculate() {
@@ -27,34 +34,4 @@ function calculate() {
 
     switch (operator) {
         case '+':
-            result = prev + current;
-            break;
-        case '-':
-            result = prev - current;
-            break;
-        case '*':
-            result = prev * current;
-            break;
-        case '/':
-            result = prev / current;
-            break;
-        default:
-            return;
-    }
-
-    currentInput = result.toString();
-    operator = '';
-    previousInput = '';
-    updateDisplay(currentInput);
-}
-
-function updateDisplay(value) {
-    document.getElementById('display').textContent = value;
-}
-
-function clearDisplay() {
-    currentInput = '';
-    previousInput = '';
-    operator = '';
-    updateDisplay('0');
-}
+            result = prev + current
